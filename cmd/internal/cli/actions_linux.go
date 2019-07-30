@@ -370,6 +370,13 @@ func execStarter(cobraCmd *cobra.Command, image string, args []string, name stri
 	if name != "" {
 		PidNamespace = true
 		IpcNamespace = true
+		// XXX(ikaneshiro) do not use ipc namespace for running encrypted container instances
+		// cryptsetup must communicate with udev through a semiphore and ipc namespace prevents
+		// this causing it to hang forever
+		if encryptionKey != "" {
+			IpcNamespace = false
+		}
+
 		engineConfig.SetInstance(true)
 		engineConfig.SetBootInstance(IsBoot)
 
