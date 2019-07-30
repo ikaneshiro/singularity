@@ -38,6 +38,8 @@ func init() {
 	cmdManager.RegisterSubCmd(InstanceCmd, InstanceStartCmd)
 	cmdManager.RegisterSubCmd(InstanceCmd, InstanceStopCmd)
 	cmdManager.RegisterSubCmd(InstanceCmd, InstanceListCmd)
+
+	cmdManager.RegisterFlagForCmd(&commonEncryptFlag, InstanceStartCmd)
 }
 
 // InstanceCmd singularity instance
