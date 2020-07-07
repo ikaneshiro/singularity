@@ -48,8 +48,8 @@ func actionPreRun(cmd *cobra.Command, args []string) {
 	// backup user PATH
 	userPath := strings.Join([]string{os.Getenv("PATH"), defaultPath}, ":")
 
-	os.Setenv("USER_PATH", userPath)
-	os.Setenv("PATH", defaultPath)
+	// os.Setenv("USER_PATH", userPath)
+	// os.Setenv("PATH", defaultPath)
 
 	// create an handle for the current image cache
 	imgCache := getCacheHandle(cache.Config{Disable: disableCache})
@@ -60,6 +60,9 @@ func actionPreRun(cmd *cobra.Command, args []string) {
 	ctx := context.TODO()
 
 	replaceURIWithImage(ctx, imgCache, cmd, args)
+
+	os.Setenv("USER_PATH", userPath)
+	os.Setenv("PATH", defaultPath)
 }
 
 func handleOCI(ctx context.Context, imgCache *cache.Handle, cmd *cobra.Command, pullFrom string) (string, error) {
