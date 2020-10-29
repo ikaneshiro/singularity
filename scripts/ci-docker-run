@@ -26,7 +26,10 @@ else
 fi
 DOCKER_CONTAINER_NAME="test_${OS_TYPE}_${OS_VERSION}"
 
-docker run --privileged -ti --network=host -v "$(pwd):/build:rw"  \
+docker run --privileged -ti --network=host \
+  -e E2E_DOCKER_USERNAME=$E2E_DOCKER_USERNAME \
+  -e E2E_DOCKER_PASSOWRD=$E2E_DOCKER_USERNAME \
+  -v "$(pwd):/build:rw"  \
   --name "$DOCKER_CONTAINER_NAME" "$DOCKER_HUB_URI" /bin/bash -exc \
 	"cd /build && scripts/ci-rpm-build-test $OS_TYPE $OS_VERSION"
 
