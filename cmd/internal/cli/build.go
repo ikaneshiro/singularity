@@ -267,6 +267,8 @@ func init() {
 		cmdManager.RegisterFlagForCmd(&commonForceFlag, buildCmd)
 		cmdManager.RegisterFlagForCmd(&commonNoHTTPSFlag, buildCmd)
 		cmdManager.RegisterFlagForCmd(&commonTmpDirFlag, buildCmd)
+		cmdManager.RegisterFlagForCmd(&commonMksquashfsProcsFlag, buildCmd)
+		cmdManager.RegisterFlagForCmd(&commonMksquashfsMemFlag, buildCmd)
 
 		cmdManager.RegisterFlagForCmd(&dockerUsernameFlag, buildCmd)
 		cmdManager.RegisterFlagForCmd(&dockerPasswordFlag, buildCmd)

@@ -57,6 +57,8 @@ var (
 	forceOverwrite      bool
 	noHTTPS             bool
 	tmpDir              string
+	mksquashfsProcs     int
+	mksquashfsMem       string
 )
 
 const (
@@ -203,6 +205,28 @@ var commonTmpDirFlag = cmdline.Flag{
 	Name:         "tmpdir",
 	Usage:        "specify a temporary directory to use for build",
 	EnvKeys:      []string{"TMPDIR"},
+}
+
+// --mksquashfs-procs
+var commonMksquashfsProcsFlag = cmdline.Flag{
+	ID:           "commonMksquashfsProcsFlag",
+	Value:        &mksquashfsProcs,
+	DefaultValue: -1,
+	Hidden:       true,
+	Name:         "mksquashfs-procs",
+	Usage:        "specify the number of processors used by mksquashfs",
+	EnvKeys:      []string{"MKSQUASHFS_PROCS"},
+}
+
+// --mksquashfs-mem
+var commonMksquashfsMemFlag = cmdline.Flag{
+	ID:           "commonMksquashfsMemFlag",
+	Value:        &mksquashfsMem,
+	DefaultValue: "",
+	Hidden:       true,
+	Name:         "mksquashfs-mem",
+	Usage:        "specify the amount of memory used by mksquashfs in bytes or with suffix (K,M,G) representing (KB,MB,GB) respectively. (e.g. 2965M)",
+	EnvKeys:      []string{"MKSQUASHFS_MEM"},
 }
 
 // -c|--config
